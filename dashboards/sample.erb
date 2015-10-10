@@ -1,6 +1,6 @@
 <% content_for :title do %>Dashboard<% end %>
 <div class="gridster">
-  <ul id="dashlist">
+  <ul >
 <!--
     <li data-row="1" data-col="1" data-sizex="2" data-sizey="1">
       <div data-id="welcome" data-view="Text" data-title="Hello" data-text="This is your shiny new dashboard." data-moreinfo="Protip: You can drag the widgets around!"></div>
@@ -13,20 +13,30 @@
     <li data-row="1" data-col="1" data-sizex="1" data-sizey="2">
       <div data-id="buzzwords" data-view="List" data-unordered="true" data-title="Buzzwords" data-moreinfo="# of times said around the office"></div>
     </li>
--->
-<%= $loopCount %>
-<% $loopCount.times do |i| %>
-
+<% i=0 %>
+<% @interest.each do |json| %>
 <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
-  <div data-id="valuation<%= "#{i}" %>" data-view="Number" data-title="Java" ></div>
+  <div data-id="valuation<%= i %>" data-view="Number" data-title="<%= json[key] %>" ></div>
 </li>
+i++
 <% end %>
-
-<!--
     <li data-row="1" data-col="1" data-sizex="2" data-sizey="1">
       <div data-id="convergence" data-view="Graph" data-title="Convergence" style="background-color:#ff9618"></div>
     </li>
 -->
+
+<%
+10       widgets =
+11       params.has_key?('ids')      ? params[:ids].split(',').map {|x| x.to_sym} :
+12       params.has_key?('groupset') ? GROUPSETS[params[:groupset].to_sym]        :
+13                                     VERSIONS
+14     %>
+15     <% widgets.each do |app| %>
+16       <% next unless VERSIONSWIDGETS.has_key?(app) %>
+17       <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
+18         <div data-id="interest-<%= app %>" data-view="Number" data-unordered="true" data-title="<%= VERSIONSWIDGETS[app][:title] %>"></div>
+19       </li>
+20     <% end %>
   </ul>
 <!--
   <center><div style="font-size: 12px">Try this: curl -d '{ "auth_token": "YOUR_AUTH_TOKEN", "text": "Hey, Look what I can do!" }' \http://<%=request.host%>:<%=request.port%>/widgets/welcome</div></center>

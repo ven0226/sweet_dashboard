@@ -1,11 +1,16 @@
 {
-  "dashboard": [
+  "dashboard":
     {
       "total": 2,
-      "interest":{
-        "java": 5,
-        "C": 10
-      }
+      "interest":[
+        {
+          "key": "Java",
+          "value": 5,
+        },
+        {
+          "key": "C",
+          "value": 15,
+        }
+      ]
     }
-  ]
 }
