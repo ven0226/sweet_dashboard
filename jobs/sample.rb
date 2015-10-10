@@ -23,9 +23,10 @@ SCHEDULER.every '2s' do
   i = 0
   responseOut = JSON.parse(response.body)
   #@loopCount = responseOut['dashboard']['total'].to_i
-  @interest = responseOut['dashboard']['interest']
 
-  @interest.each do |json|
+  interest = responseOut['dashboard']['interest']
+  erb :sample, :locals => {:clients => interest}
+  interest.each do |json|
     send_event('valuation' + i, { current: json[value].to_i})
     i = i + 1
   end
