@@ -1,0 +1,11 @@
+{
+  "dashboard": [
+    {
+      "total": 2,
+      "interest":{
+        "java": 5,
+        "C": 10
+      }
+    }
+  ]
+}

@@ -1,12 +1,25 @@
-require 'net/http'
+require 'rest_client'
 current_valuation = 0
 current_karma = 0
 $loopCount = 10
-
+$resp_text = ''
 SCHEDULER.every '2s' do
-  url = 'http://www.acme.com/products/3322' # ACME boomerang
-  resp = Net::HTTP.get_response(URI.parse(url))
-  resp_text = resp.body
+  #url = 'http://www.acme.com/products/3322' # ACME boomerang
+  #resp = Net::HTTP.get_response(URI.parse(url))
+  #$resp_text = resp.body
+  #response = RestClient.get 'http://localhost:3000/dashboard'
+  #response.code
+  response = RestClient.get('http://localhost:3000/dashboard'){ |response, request, result, &block|
+  case response.code
+  when 200
+    #p "It worked !"
+    response
+  when 423
+    raise SomeCustomExceptionIfYouWant
+  else
+    response.return!(request, result, &block)
+  end
+  }
   last_valuation = current_valuation
   last_karma     = current_karma
   current_valuation = rand(10)
