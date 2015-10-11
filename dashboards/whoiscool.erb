@@ -1,0 +1,23 @@
+<% content_for :title do %>Dashboard<% end %>
+
+<% queryNeo = "START n=node(*) MATCH ({name:'Venky'})-[r]->(x)<-[r2]-(n) return n,count(x)AS num_rels,collect(x.name) order by num_rels desc"%>
+
+<% response = RestClient.post('127.0.0.1:7474/db/data/cypher',%>
+<%  {%>
+<%    :query => queryNeo%>
+<% })%>
+<% names = Hash.new({ value: 0 }) %>
+
+<% responseOut = JSON.parse(response.body)%>
+<% responseOut['data'].each do |resp| %>
+
+<% names[resp[0]["data"]["name"]] = { label: resp[0]["data"]["name"], value: resp[2]} %>
+<% end %>
+<% send_event('Coolppl', { items: names.values })%>
+<div class="gridster">
+  <ul>
+    <li data-row="1" data-col="1" data-sizex="4" data-sizey="2">
+      <div data-id="Coolppl" data-view="Coolppl" data-unordered="true" data-title="They are like you !! " data-moreinfo="Names help sometimes !!"></div>
+    </li>
+  </ul>
+</div>

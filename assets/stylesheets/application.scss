@@ -135,7 +135,13 @@ h3 {
 .gridster ul {
   list-style: none;
 }
+.coolppl-nostyle {
+  coolppl-style: none;
+}
 
+.gridster ul {
+  coolppl-style: none;
+}
 .gs_w {
   width: 100%;
   display: table;
@@ -254,4 +260,3 @@ h3 {
 .clearfix:before, .clearfix:after { content: "\0020"; display: block; height: 0; overflow: hidden; }
 .clearfix:after { clear: both; }
 .clearfix { zoom: 1; }
-

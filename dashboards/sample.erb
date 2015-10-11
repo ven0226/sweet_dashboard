@@ -1,9 +1,5 @@
 <% content_for :title do %>Dashboard<% end %>
-<script type="text/javascript" charset="utf-8">
-function calledMe(){
 
-}
-</script>
 <div class="gridster">
   <ul >
 <!--
@@ -22,7 +18,7 @@ function calledMe(){
     <!-- yellow purple blue -->
     <% colorPicker = ['#ff9618','#9c4274','#47bbb3'] %>
   <li data-row="1" data-col="1" data-sizex="2" data-sizey="1">
-    <div data-id="welcome" data-view="Text" data-title="Yo!!!" data-text="Who is as cool as me!!!!" ></div>
+    <div data-id="welcome" data-view="Text" data-title="Yo!!!" data-text="Who is as cool as me!!!!" onclick="location.href='http://localhost:3030/whoiscool'"></div>
   </li>
   <% settings.number_rows.each do |json| %>
         <% col = rand(3)%>
