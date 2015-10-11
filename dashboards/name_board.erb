@@ -1,7 +1,23 @@
+<% content_for :title do %>Dashboard<% end %>
+<% val = params['t']%>
+<% p val %>
+<% queryNeo = "start n=node(*) match (n{name:'"+val+"'})<-[r]-(x) return x.name"%>
+
+<% response = RestClient.post('127.0.0.1:7474/db/data/cypher',%>
+<%  {%>
+<%    :query => queryNeo%>
+<% })%>
+<% names = Hash.new({ value: 0 }) %>
+
+<% responseOut = JSON.parse(response.body)%>
+<% responseOut['data'].each do |resp| %>
+<% names[resp[0]] = { label: resp[0], value: resp[0] } %>
+<% end %>
+<% send_event('buzzwords', { items: names.values })%>
 <div class="gridster">
   <ul>
-    <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
-      <div data-id="my_widget" data-view="Text"></div>
+    <li data-row="1" data-col="1" data-sizex="1" data-sizey="2">
+      <div data-id="buzzwords" data-view="List" data-unordered="true" data-title="<%=val%> Group" data-moreinfo="# of times said around the office"></div>
     </li>
   </ul>
 </div>
