@@ -4,7 +4,7 @@ require 'nokogiri'
 SCHEDULER.every '10s' do
   queryNeo = "start n=node(*) match (n{type:'skill'})-[r]-() return n, count(r) as rel_count order by rel_count desc"
   #args = {'query': query}
-  response = RestClient.post('http://127.0.0.1:7474/db/data/cypher',
+  response = RestClient.post('152.23.22.117:3000/db/data/cypher',
     {
       :query => queryNeo
   })

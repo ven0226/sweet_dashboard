@@ -14,12 +14,15 @@
       <div data-id="buzzwords" data-view="List" data-unordered="true" data-title="Buzzwords" data-moreinfo="# of times said around the office"></div>
     </li>
   -->
+    <!-- yellow purple blue -->
+    <% colorPicker = ['#ff9618','#9c4274','#47bbb3']%>
   <li data-row="1" data-col="1" data-sizex="2" data-sizey="1">
     <div data-id="welcome" data-view="Text" data-title="Yo!!!" data-text="Who is as cool as me!!!!" ></div>
   </li>
   <% settings.number_rows.each do |json| %>
+        <% col = rand(3)%>
   <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
-    <div data-id="<%=json%>" data-view="Number" data-title="<%=json%>" style="background-color:#ff9618"></div>
+    <div data-id="<%=json%>" data-view="Number" data-title="<%=json%>" style="background-color:<%= #{colorPicker[col]} %>" onclick="location.href='name_board'"></div>
   </li>
   <% end %>
   <!--
