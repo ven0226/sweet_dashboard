@@ -14,9 +14,12 @@
       <div data-id="buzzwords" data-view="List" data-unordered="true" data-title="Buzzwords" data-moreinfo="# of times said around the office"></div>
     </li>
   -->
+  <li data-row="1" data-col="1" data-sizex="2" data-sizey="1">
+    <div data-id="welcome" data-view="Text" data-title="Yo!!!" data-text="Who is as cool as me!!!!" ></div>
+  </li>
   <% settings.number_rows.each do |json| %>
   <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
-    <div data-id="<%=json%>" data-view="Number" data-title="<%=json%>" ></div>
+    <div data-id="<%=json%>" data-view="Number" data-title="<%=json%>" style="background-color:#ff9618"></div>
   </li>
   <% end %>
   <!--

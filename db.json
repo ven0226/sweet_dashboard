@@ -1,8 +1,7 @@
 {
-  "dashboard":
+  "dashboard": [
     {
-
-      "interest":[
+      "skillList": [
         {
           "key": "Java",
           "value": 5
@@ -16,5 +15,22 @@
           "value": 17
         }
       ]
+    },
+    {
+      "courseList": [
+        {
+          "key": "Algorithms",
+          "value": 4
+        },
+        {
+          "key": "Database",
+          "value": 9
+        },
+        {
+          "key": "Machine Learning",
+          "value": 14
+        }
+      ]
     }
+  ]
 }
