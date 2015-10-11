@@ -14,14 +14,12 @@
       <div data-id="buzzwords" data-view="List" data-unordered="true" data-title="Buzzwords" data-moreinfo="# of times said around the office"></div>
     </li>
   -->
-<% i=0 %>
-<% clients.each do |json| %>
-<li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
-  <div data-id="valuation<%= i %>" data-view="Number" data-title="<%= json[key] %>" ></div>
-</li>
-i++
-<% end %>
-<!--
+  <% settings.number_rows.each do |json| %>
+  <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
+    <div data-id="<%=json%>" data-view="Number" data-title="<%=json%>" ></div>
+  </li>
+  <% end %>
+  <!--
     <li data-row="1" data-col="1" data-sizex="2" data-sizey="1">
       <div data-id="convergence" data-view="Graph" data-title="Convergence" style="background-color:#ff9618"></div>
     </li>

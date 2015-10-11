@@ -1,15 +1,19 @@
 {
   "dashboard":
     {
-      "total": 2,
+
       "interest":[
         {
           "key": "Java",
-          "value": 5,
+          "value": 5
         },
         {
           "key": "C",
-          "value": 15,
+          "value": 15
+        },
+        {
+          "key": "C#",
+          "value": 17
         }
       ]
     }

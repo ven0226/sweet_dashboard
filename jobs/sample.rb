@@ -1,4 +1,5 @@
-require 'rest_client'
+require 'rest-client'
+require 'nokogiri'
 current_valuation = 0
 current_karma = 0
 #$loopCount = 10
@@ -23,13 +24,21 @@ SCHEDULER.every '2s' do
   i = 0
   responseOut = JSON.parse(response.body)
   #@loopCount = responseOut['dashboard']['total'].to_i
-
-  interest = responseOut['dashboard']['interest']
-  erb :sample, :locals => {:clients => interest}
+  rows=[]
+  interest = responseOut['interest']
+  #Sinatra::Application::INTERESTS = interest
+  #erb :sample, :locals => {:clients => @interest}
   interest.each do |json|
-    send_event('valuation' + i, { current: json[value].to_i})
+    #p json
+    #p json["key"]
+    #p json["value"]
+    rows << json["key"]
+    send_event(json["key"], { current: json["value"].to_i})
     i = i + 1
   end
+  #p rows
+  set :number_rows, rows
+  #send_event('refresh_sample', {event: 'reload', dashboard: 'sample'}, 'dashboards')
   #last_valuation = current_valuation
   #last_karma     = current_karma
   #current_valuation = rand(10)
